@@ -54,16 +54,16 @@ def main():
     p6 = np.array([[10.8082,-48.8146,56.1475,1]])
     p7 = np.array([[13.2690,-58.0988,59.1422,1]])
 
-    blankIm = np.zeros((256,170,3))
+    blankIm = np.zeros((170,256,3))
     
     Mext = Hcw[0:3,:]
     # Mext = 
-    print(Mext)
+    # print(Mext)
 
     p1c = K@Mext@p1.T
     p1cf = (p1c/p1c[2])[0:2].round().astype(int)
     
-    print(p1cf)
+    # print(p1cf)
 
     p2c = K@Mext@p2.T
     p2cf = (p2c/p2c[2])[0:2].round().astype(int)
@@ -78,21 +78,34 @@ def main():
     p7c = K@Mext@p7.T
     p7cf = (p7c/p7c[2])[0:2].round().astype(int)
 
-    blankIm[p1cf[0],p1cf[1]] = (256,256,256)
-    blankIm[p2cf[0],p2cf[1]] = (256,256,256)
-    blankIm[p3cf[0],p3cf[1]] = (256,256,256)
-    blankIm[p4cf[0],p4cf[1]] = (256,256,256)
-    blankIm[p5cf[0],p5cf[1]] = (256,256,256)
-    blankIm[p6cf[0],p6cf[1]] = (256,256,256)
-    blankIm[p7cf[0],p7cf[1]] = (256,256,256)
+
+    cv2.circle(blankIm,(int(p1cf[0]),int(p1cf[1])),5,(255,255,255),-1)
+    cv2.circle(blankIm,(int(p2cf[0]),int(p2cf[1])),5,(255,255,255),-1)
+    cv2.circle(blankIm,(int(p3cf[0]),int(p3cf[1])),5,(255,255,255),-1)
+    cv2.circle(blankIm,(int(p4cf[0]),int(p4cf[1])),5,(255,255,255),-1)
+    cv2.circle(blankIm,(int(p5cf[0]),int(p5cf[1])),5,(255,255,255),-1)
+    cv2.circle(blankIm,(int(p6cf[0]),int(p6cf[1])),5,(255,255,255),-1)
+    cv2.circle(blankIm,(int(p7cf[0]),int(p7cf[1])),5,(255,255,255),-1)
+
+    print("Question 2d.")
+    print("Result is an image depicting the constellation Big Dipper")
+    cv2.imshow("result", blankIm)
+    cv2.waitKey(0)
+
+    cv2.line(blankIm, (int(p1cf[0]), int(p1cf[1])),(int(p2cf[0]), int(p2cf[1])), (255, 255, 255), 2)
+    cv2.line(blankIm, (int(p2cf[0]), int(p2cf[1])),(int(p3cf[0]), int(p3cf[1])), (255, 255, 255), 2)
+    cv2.line(blankIm, (int(p3cf[0]), int(p3cf[1])),(int(p4cf[0]), int(p4cf[1])), (255, 255, 255), 2)
+    cv2.line(blankIm, (int(p4cf[0]), int(p4cf[1])),(int(p5cf[0]), int(p5cf[1])), (255, 255, 255), 2)
+    cv2.line(blankIm, (int(p5cf[0]), int(p5cf[1])),(int(p6cf[0]), int(p6cf[1])), (255, 255, 255), 2)
+    cv2.line(blankIm, (int(p6cf[0]), int(p6cf[1])),(int(p7cf[0]), int(p7cf[1])), (255, 255, 255), 2)
+
+    print("Question 3.")
+    print("Result is an image depicting the constellation Big Dipper with lines connecting the points/stars together")
 
     cv2.imshow("result", blankIm)
     cv2.waitKey(0)
-    
 
-    
-    
-        
+
 
 if __name__ == "__main__":
     main()
