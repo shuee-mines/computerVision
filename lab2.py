@@ -1,5 +1,5 @@
 import numpy as np
-import cv2 
+import cv2
 
 def main():
 
@@ -54,10 +54,10 @@ def main():
     p6 = np.array([[10.8082,-48.8146,56.1475,1]])
     p7 = np.array([[13.2690,-58.0988,59.1422,1]])
 
-    blankIm = np.zeros((170,256,3))
+    blankIm = np.zeros((256,170,3))
     
-    #Mext = Hcw[0:3,:]
-    Mext = 
+    Mext = Hcw[0:3,:]
+    # Mext = 
     print(Mext)
 
     p1c = K@Mext@p1.T
@@ -85,6 +85,9 @@ def main():
     blankIm[p5cf[0],p5cf[1]] = (256,256,256)
     blankIm[p6cf[0],p6cf[1]] = (256,256,256)
     blankIm[p7cf[0],p7cf[1]] = (256,256,256)
+
+    cv2.imshow("result", blankIm)
+    cv2.waitKey(0)
     
 
     
